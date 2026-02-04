@@ -1,0 +1,54 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #777;
+}
+
+.parallax-section {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100%;
+}
+
+.bg-1 {
+    background-image: url('https://i.pinimg.com/736x/29/50/9a/29509a69bf968e3b59b354d2849ac26a.jpg');
+}
+
+.bg-2 {
+    background-image: url('https://i.pinimg.com/originals/6f/c4/c8/6fc4c8e06fb4aa6f343dbbc476df7e2f.gif');
+}
+
+.caption {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translateY(-50%);
+}
+
+.caption span.border {
+    background-color: #111;
+    color: #fff;
+    padding: 18px;
+    font-size: 25px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.dark-block {
+    color: #ddd;
+    background-color: #ff98b4;
+    text-align: center;
+    padding: 50px 80px;
+}
+
+h3 {
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #fff;
+}
