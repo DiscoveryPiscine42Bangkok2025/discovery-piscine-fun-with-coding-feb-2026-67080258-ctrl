@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Resume - Custom CSS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&family=Sarabun:wght@300;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --primary-color: #ff69b4;
+            --secondary-color: #9b59b6;
+            --bg-color: #e6cdf3;
+            --white: #ffffff;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Sarabun', sans-serif; 
+            background: var(--bg-color); 
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            background: var(--dark);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary-color); }
+
+        .page-section { display: none; min-height: 100vh; padding-top: 100px; padding-bottom: 50px; }
+        .page-active { display: block; animation: fadeIn 0.4s ease-in-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .text-center { text-align: center; }
+        .fw-bold { font-weight: 600; }
+        
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .profile-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .profile-img { 
+            width: 180px; height: 180px; 
+            object-fit: cover; border-radius: 50%; 
+            border: 5px solid #f7cffb;
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-top: 15px;
+        }
+
+        .btn-back {
+            background: none;
+            border: 1px solid var(--gray);
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+.profile-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    min-height: 600px; 
+    height: auto;
+}
+
+.sidebar {
+    padding: 40px;
+    text-align: center;
+    border-right: 1px solid #eee;
+    background-color: #fafafa;
+}
+
+.info-table th { 
+    text-align: left; 
+    width: 140px; 
+    padding: 10px 5px;
+    color: var(--gray); 
+    vertical-align: top;
+}
+
+.info-table td { 
+    padding: 10px 5px; 
+    word-break: break-word;
+}
+
+.skill-item { 
+    margin-bottom: 25px; 
+}
+
+        .main-content { padding: 40px; }
+
+        .info-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+
+        .progress-bg { background: #eee; border-radius: 10px; height: 12px; width: 100%; }
+        .progress-fill { 
+            background: #28a745; height: 100%; border-radius: 10px; 
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 0.7rem;
+        }
+
+        .contact-icons { display: flex; gap: 15px; margin-top: 10px; }
+        .contact-icons img { width: 32px; transition: 0.3s; }
+        .contact-icons img:hover { opacity: 0.7; transform: scale(1.1); }
+
+        @media (max-width: 768px) {
+            .profile-layout { grid-template-columns: 1fr; }
+            .sidebar { border-right: none; border-bottom: 1px solid #eee; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="javascript:void(0)" onclick="showPage('home')">
+                <span style="color: var(--primary-color);">My</span><span style="color: var(--white);">Resume</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="javascript:void(0)" onclick="showPage('profile1')">Pornnapha</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('profile2')">Sirikan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="page-section page-active">
+        <div class="container text-center">
+            <h1 class="fw-bold">⋆.𐙚 ̊ Portfolio ❀˖°</h1>
+            <p style="color: var(--gray);">คลิกที่รูปภาพเพื่อดูประวัติและประสบการณ์</p>
+            
+            <div class="profile-grid">
+                <div class="profile-card" onclick="showPage('profile1')">
+                    <img src="Bell.webp" class="profile-img">
+                    <h3 class="fw-bold">Pornnapha</h3>
+                    <p style="color: var(--gray);">Reader</p>
+                    <span class="badge">View Profile</span>
+                </div>
+
+                <div class="profile-card" onclick="showPage('profile2')">
+                    <img src="Foam.webp" class="profile-img">
+                    <h3 class="fw-bold">Sirikan</h3>
+                    <p style="color: var(--gray);">Member</p>
+                    <span class="badge">View Profile</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="profile1" class="page-section">
+        <div class="container">
+            <button class="btn-back" onclick="showPage('home')">← Back to Home</button>
+            <div class="profile-layout">
+                <div class="sidebar">
+                    <img src="Bell.webp" class="profile-img">
+                    <h2 class="fw-bold">Pornnapha</h2>
+                    <p style="color: var(--secondary-color); font-weight: bold;">Reader / Specialist</p>
+                </div>
+                <div class="main-content">
+                    <h4 class="fw-bold">Philosophy</h4>
+                    <p style="margin-bottom: 20px; color: var(--gray); font-size: 0.95rem;">
+                        Make today the best like no tomorrow.
+                    </p>
+                
+                    <h4 class="fw-bold">Profile</h4>
+                    <table class="info-table">
+                        <tr><th>Name:</th><td>Pornnapha Atthasopha</td></tr>
+                        <tr><th>Nickname:</th><td>Bella</td></tr>
+                        <tr><th>Birthday:</th><td>30 May 2006</td></tr>
+                        <tr><th>Blood type:</th><td>O</td></tr>
+                        <tr><th>Ethnicity</th><td>Thai</td></tr>
+                        <tr><th>Nationality</th><td>Thai</td></tr>
+                        <tr><th>Religion:</th><td>Buddhist</td></tr>
+                        <tr><th>Address:</th><td>Ratchaphruek Female Dormitory, Soi Lat Krabang 52/1, Lat Krabang Road, Lat Krabang, Lat Krabang, Bangkok 10520</td></tr>
+                    </table>
+                
+                    <h4 class="fw-bold" style="margin-top:20px;">Education</h4>
+                    <div style="margin-bottom: 20px;">
+                        <p class="fw-bold" style="font-size: 0.9rem; margin-bottom: 0;">King Mongkut's Institute of Technology Ladkrabang</p>
+                        <p style="font-size: 0.85rem; color: var(--gray);">Currently Studying</p>
+                    </div>
+                
+                    <h4 class="fw-bold">Skills & Interests</h4>
+                    
+                    <div class="skill-item">
+                        <span class="fw-bold" style="font-size: 0.9rem;">Drawing & Graphic</span>
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 75%; background: var(--primary-color);">75%</div>
+                        </div>
+                    </div>
+                
+                    <div class="skill-item">
+                        <span class="fw-bold" style="font-size: 0.9rem;">Vidio Editing</span>
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 80%; background: var(--primary-color);">80%</div>
+                        </div>
+                    </div>
+                
+                    <div class="skill-item">
+                        <span class="fw-bold" style="font-size: 0.9rem;">Swimming</span>
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 70%; background: var(--primary-color);">70%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <span class="fw-bold" style="font-size: 0.9rem;">Live Creater</span>
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 90%; background: var(--primary-color);">90%</div>
+                        </div>
+                    </div>
+                
+                    <h4 class="fw-bold">Contact</h4>
+                    <div class="contact-icons">
+                        <a href="https://www.instagram.com/ahpannrop?igsh=MTB0d3VsNWJmNWEydQ%3D%3D&utm_source=qr"><img src="Instagram.webp" alt="IG"></a>
+                        <a href="https://github.com/DiscoveryPiscine42Bangkok2025/discovery-piscine-fun-with-coding-feb-2026-67080258-ctrl.git"><img src="github.jpeg" alt="GitHub"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="profile2" class="page-section">
+        <div class="container">
+            <button class="btn-back" onclick="showPage('home')">← Back to Home</button>
+            <div class="profile-layout">
+                <div class="sidebar">
+                    <img src="Foam.webp" class="profile-img">
+                    <h2 class="fw-bold">Sirikan</h2>
+                    <p style="color: var(--secondary-color); font-weight: bold;">Member / Contributor</p>
+                </div>
+                <div class="main-content">
+                    <h4 class="fw-bold">Philosophy</h4>
+                    <p style="margin-bottom: 20px; color: var(--gray); font-size: 0.95rem;">
+                        Lifelong learning is the key to success.
+                    </p>
+                
+                    <h4 class="fw-bold">Profile</h4>
+                    <table class="info-table">
+                        <tr><th>Name:</th><td>Sirikan Haraphum</td></tr>
+                        <tr><th>Nickname:</th><td>Foam</td></tr>
+                        <tr><th>Birthday:</th><td>10 April 2006</td></tr>
+                        <tr><th>Blood type:</th><td>O</td></tr>
+                        <tr><th>Ethnicity</th><td>Thai</td></tr>
+                        <tr><th>Nationality</th><td>Thai</td></tr>
+                        <tr><th>Religion:</th><td>Buddhist</td></tr>
+                        <tr><th>Address:</th><td>SK Dormitory (Lat Krabang 50, Alley 2), Bangkok 10520</td></tr>
+                    </table>
+                
+                    <h4 class="fw-bold" style="margin-top:20px;">Education</h4>
+                    <div style="margin-bottom: 20px;">
+                        <p class="fw-bold" style="font-size: 0.9rem; margin-bottom: 0;">King Mongkut's Institute of Technology Ladkrabang</p>
+                        <p style="font-size: 0.85rem; color: var(--gray);">Currently Studying</p>
+                    </div>
+                
+                    <h4 class="fw-bold">Skills & Interests</h4>
+                    
+                    <div class="skill-item">
+                        <span class="fw-bold" style="font-size: 0.9rem;">Badminton</span>
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 70%; background: var(--primary-color);">70%</div>
+                        </div>
+                    </div>
+                
+                    <div class="skill-item">
+                        <span class="fw-bold" style="font-size: 0.9rem;">Drawing</span>
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 65%; background: var(--primary-color);">65%</div>
+                        </div>
+                    </div>
+                
+                    <div class="skill-item">
+                        <span class="fw-bold" style="font-size: 0.9rem;">reading</span>
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 60%; background: var(--primary-color);">60%</div>
+                        </div>
+                    </div>
+                
+                
+                    <h4 class="fw-bold">Contact</h4>
+                    <div class="contact-icons">
+                        <a href="https://www.instagram.com/fomerxq_?igsh=MXVydXhuZW10bjRscw%3D%3D&utm_source=qr"><img src="Instagram.webp" alt="IG"></a>
+                        <a href="https://github.com/DiscoveryPiscine42Bangkok2025/discovery-piscine-fun-with-coding-feb-2026-67080011-dotcom.git"><img src="github.jpeg" alt="GitHub"></a>
+                    </div>
+                </div>
+
+    </section>
+
+    <script>
+        function showPage(pageId) {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('page-active');
+            });
+
+            const target = document.getElementById(pageId);
+            if (target) {
+                target.classList.add('page-active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
