@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explode this balloon - jQuery Version</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #balloon {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%;
+            cursor: pointer;
+            /* ลบ transition ออกเพื่อให้ขนาดเปลี่ยนทันทีตามที่โจทย์มักจะทดสอบ */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="balloon"></div>
+
+    <script>
+        $(document).ready(function() {
+            // ใช้ jQuery เลือก Element
+            const $balloon = $('#balloon');
+            const colors = ['red', 'green', 'blue'];
+            let colorIndex = 0;
+            let currentSize = 200;
+
+            function updateBalloon() {
+                // ใช้ .css() ของ jQuery ในการปรับสไตล์
+                $balloon.css({
+                    'width': currentSize + 'px',
+                    'height': currentSize + 'px',
+                    'background-color': colors[colorIndex]
+                });
+            }
+
+            // ใช้ .on('click', ...) แทน addEventListener
+            $balloon.on('click', function() {
+                currentSize += 10;
+                
+                if (currentSize > 420) {
+                    currentSize = 200;
+                    colorIndex = 0;
+                } else {
+                    colorIndex = (colorIndex + 1) % colors.length;
+                }
+                updateBalloon();
+            });
+
+            // เพิ่ม Event mouseleave (เมื่อเอาเมาส์ออกจากลูกโป่ง)
+            $balloon.on('mouseleave', function() {
+                if (currentSize > 200) {
+                    currentSize -= 5;
+                    // เปลี่ยนสีถอยหลัง
+                    colorIndex = (colorIndex - 1 + colors.length) % colors.length;
+                    updateBalloon();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

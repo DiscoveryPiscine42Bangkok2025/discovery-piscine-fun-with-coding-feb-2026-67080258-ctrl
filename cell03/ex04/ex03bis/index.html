@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do or Not To Do - jQuery Version</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        #ft_list { min-height: 50px; border: 1px solid #ccc; margin-top: 10px; border-radius: 4px; }
+        .todo-item { 
+            padding: 12px; 
+            border-bottom: 1px solid #eee; 
+            cursor: pointer; 
+            background: #fff;
+            transition: background 0.2s;
+        }
+        .todo-item:hover { background-color: #fff1f1; }
+        .todo-item:last-child { border-bottom: none; }
+        button { padding: 8px 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <button id="newBtn">New</button>
+    <div id="ft_list"></div>
+
+    <script>
+        $(document).ready(function() {
+            // 2. เมื่อคลิกปุ่ม New เพื่อเพิ่มรายการ
+            $('#newBtn').on('click', function() {
+                let task = prompt("What needs to be done?");
+                
+                // ตรวจสอบว่าไม่ได้กด Cancel และไม่ได้พิมพ์ว่างเปล่า
+                if (task !== null && task.trim() !== "") {
+                    // สร้าง Element ใหม่ด้วย jQuery และนำไปต่อหน้าสุด (prepend) หรือหลังสุด (append)
+                    // ในที่นี้ใช้ prepend เพื่อให้รายการใหม่อยู่บนสุดเหมือนที่โจทย์ 3-3 มักต้องการ
+                    let $newItem = $('<div></div>').text(task).addClass('todo-item');
+                    $('#ft_list').prepend($newItem);
+                }
+            });
+
+            // 3. การลบรายการ (Event Delegation)
+            // เราดักจับที่ตัวแม่ (#ft_list) แล้วสั่งให้ทำงานเมื่อตัวลูก (.todo-item) ถูกคลิก
+            // วิธีนี้จะทำให้ Item ที่สร้างขึ้นมาใหม่ภายหลังสามารถคลิกลบได้ทันที
+            $('#ft_list').on('click', '.todo-item', function() {
+                if (confirm("Do you really want to delete this item?")) {
+                    $(this).remove(); // $(this) คือรายการที่ถูกคลิก
+                }
+            });
+        });
+    </script>
+</body>
+</html>
